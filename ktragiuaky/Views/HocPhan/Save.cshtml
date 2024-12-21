@@ -1,0 +1,16 @@
+﻿@model List<ktragiuaky.Models.HocPhan>
+
+@{
+    ViewData["Title"] = "Dang Ky Hoc Phan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lưu đăng ký học phần thành công!</h1>
+
+<p>
+    Bạn đã đăng ký các học phần thành công. Bạn có thể quay lại trang học phần để tiếp tục.
+</p>
+
+<p>
+    <a href="@Url.Action("Index", "HocPhan")">Quay lại trang học phần</a>
+</p>

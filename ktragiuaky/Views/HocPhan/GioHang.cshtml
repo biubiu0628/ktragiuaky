@@ -1,0 +1,54 @@
+﻿@model List<ktragiuaky.Models.HocPhan>
+
+@{
+    ViewData["Title"] = "Dang Ky Hoc Phan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Đăng ký học phần</h1>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã học phần</th>
+                <th>Tên học phần</th>
+                <th>Số tín chỉ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hocPhan in Model)
+            {
+                <tr>
+                    <td>@hocPhan.MaHp</td>
+                    <td>@hocPhan.TenHp</td>
+                    <td>@hocPhan.SoTinChi</td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" name="maHp" value="@hocPhan.MaHp" />
+                            <button type="submit">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <p>Số học phần: @Model.Count</p>
+    <p>Tổng tín chỉ: @Model.Sum(h => h.SoTinChi)</p>
+    <form asp-action="DeleteAll" method="post">
+        <button type="submit">Xóa Đăng Ký</button>
+    </form>
+    <form asp-action="Save" method="post">
+        <button type="submit">Lưu Đăng Ký</button>
+    </form>
+}
+else
+{
+    <p>Không có học phần nào được đăng ký.</p>
+}
+
+<p>
+    <a href="@Url.Action("Index", "HocPhan")">Quay lại trang học phần</a>
+</p>
